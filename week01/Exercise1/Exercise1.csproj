@@ -1,11 +1,5 @@
-
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
-
-</Project>
+console.write("what is your first name ?");
+string firstname = consle.readline();
+console.write("what is your last name?");
+string lastname = console.readline();
+console.writeline("your name is {lastname}, {firstname} {lastname}");

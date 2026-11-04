@@ -2,8 +2,10 @@ using System;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Hello World! This is the Exercise1 Project.");
-    }
-}
+console.write("what is your first name ?");
+string firstname = consle.readline();
+console.write("what is your last name?");
+string lastname = console.readline();
+console.writeline("your name is {lastname}, {firstname} {lastname}");

@@ -4,44 +4,65 @@ class Program
 {
     static void Main()
     {
-console.write("what is your grade percentage? ");
-string input =console.readline(); 
-int grade = int.parse(input);
-string letter = "";
-string siqn="";
-// core: determine letter grade
-if (grade >= 90)
-{
-    letter = "A":
-}
-else if (grade >= 70)
-{
-    letter = "C";
-}
-else if (grade >= 60)
-{
-    letter ="D";
-}
-else
-    {
-        letter = "f";
-    }
-    int lastdigit = grade #10;
-    if (lastdigit >= 7)
-    {
-        else if (last digit < 3)
-    }
-    {
-        sign ="-";
-    }
-    else
-    {
-        siqn = "";
-    }
-    console.writeline(" your letter is grade is {letter}{siqn}");
-    if(grade >= 70)
-    {
-        console.writeline(" congratulatioms! you passed the course!");
+        Console.Write("What is your grade percentage? ");
+        int grade = int.Parse(Console.ReadLine());
+
+        string letter = "";
+        string sign = "";
+
+        if (grade >= 90)
+        {
+            letter = "A";
+        }
+        else if (grade >= 80)
+        {
+            letter = "B";
+        }
+        else if (grade >= 70)
+        {
+            letter = "C";
+        }
+        else if (grade >= 60)
+        {
+            letter = "D";
+        }
         else
-        console.writeline("dont give up! you will do better next time. keep trying!");
+        {
+            letter = "F";
+        }
+
+        if (letter != "F")
+        {
+            int lastDigit = grade % 10;
+
+            if (lastDigit >= 7)
+            {
+                sign = "+";
+            }
+            else if (lastDigit < 3)
+            {
+                sign = "-";
+            }
+            else
+            {
+                sign = "";
+            }
+
+            if (letter == "A" && sign == "+")
+            {
+                sign = "";
+            }
+        }
+
+        Console.WriteLine($"Your letter grade is {letter}{sign}.");
+
+        if (grade >= 70)
+        {
+            Console.WriteLine("Congratulations! You passed the course!");
+        }
+        else
+        {
+            Console.WriteLine("Don't give up! You'll do better next time. Keep trying!");
+        }
     }
+}

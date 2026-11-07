@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class Program
 {
@@ -52,7 +53,6 @@ class Program
         }
     }
 
-    // ===== 1. YOUR NAME =====
     static void NameAssignment()
     {
         Console.Write("What is your first name? ");
@@ -65,7 +65,6 @@ class Program
         Console.WriteLine($"Your name is {lastName}, {firstName} {lastName}.");
     }
 
-    // ===== 2. LETTER GRADE =====
     static void GradeAssignment()
     {
         Console.Write("What is your grade percentage? ");
@@ -95,27 +94,27 @@ class Program
             letter = "F";
         }
 
-        int lastDigit = grade % 10;
-        if (lastDigit >= 7)
+        if (letter != "F")
         {
-            sign = "+";
-        }
-        else if (lastDigit < 3)
-        {
-            sign = "-";
-        }
-        else
-        {
-            sign = "";
-        }
+            int lastDigit = grade % 10;
 
-        if (letter == "A" && sign == "+")
-        {
-            sign = "";
-        }
-        if (letter == "F")
-        {
-            sign = "";
+            if (lastDigit >= 7)
+            {
+                sign = "+";
+            }
+            else if (lastDigit < 3)
+            {
+                sign = "-";
+            }
+            else
+            {
+                sign = "";
+            }
+
+            if (letter == "A" && sign == "+")
+            {
+                sign = "";
+            }
         }
 
         Console.WriteLine($"Your letter grade is {letter}{sign}.");
@@ -130,7 +129,6 @@ class Program
         }
     }
 
-    // ===== 3. GUESS MY NUMBER =====
     static void GuessGame()
     {
         string playAgain = "yes";
@@ -139,7 +137,6 @@ class Program
         {
             Random randomGenerator = new Random();
             int magicNumber = randomGenerator.Next(1, 101);
-
             int guess = -1;
             int guessCount = 0;
 
@@ -164,21 +161,18 @@ class Program
             }
 
             Console.WriteLine($"It took you {guessCount} guesses.");
-
             Console.Write("Do you want to play again? ");
             playAgain = Console.ReadLine().ToLower();
         }
     }
 
-    // ===== 4. LIST OF NUMBERS =====
     static void ListAssignment()
     {
         List<int> numbers = new List<int>();
-
         Console.WriteLine("Enter a list of numbers, type 0 when finished.");
 
-        int number = -1;
-        while (number != 0)
+        int number;
+        do
         {
             Console.Write("Enter number: ");
             number = int.Parse(Console.ReadLine());
@@ -187,11 +181,28 @@ class Program
             {
                 numbers.Add(number);
             }
-        }
+        } while (number != 0);
 
-        int sum = 0;
-        foreach (int num in numbers)
-        {
-            sum += num;
-        }
-        consle.readline
+        int sum = numbers.Sum();
+        double average = numbers.Count > 0 ? numbers.Average() : 0;
+        int largest = numbers.Count > 0 ? numbers.Max() : 0;
+        int smallest = numbers.Count > 0 ? numbers.Min() : 0;
+
+        Console.WriteLine($"Sum: {sum}");
+        Console.WriteLine($"Average: {average}");
+        Console.WriteLine($"Largest: {largest}");
+        Console.WriteLine($"Smallest: {smallest}");
+    }
+
+    static void FunctionsAssignment()
+    {
+        Console.Write("Enter a number to square: ");
+        int number = int.Parse(Console.ReadLine());
+        Console.WriteLine($"The square of {number} is {SquareNumber(number)}.");
+    }
+
+    static int SquareNumber(int value)
+    {
+        return value * value;
+    }
+}

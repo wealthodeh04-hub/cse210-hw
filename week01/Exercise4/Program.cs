@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class Program
 {
@@ -21,17 +22,37 @@ class Program
             choice = Console.ReadLine();
             Console.WriteLine();
 
-            if (choice == "1") NameAssignment();
-            else if (choice == "2") GradeAssignment();
-            else if (choice == "3") GuessGame();
-            else if (choice == "4") ListAssignment();
-            else if (choice == "5") FunctionsAssignment();
-            else if (choice == "6") Console.WriteLine("Goodbye!");
-            else Console.WriteLine("Invalid choice, try again.");
+            if (choice == "1")
+            {
+                NameAssignment();
+            }
+            else if (choice == "2")
+            {
+                GradeAssignment();
+            }
+            else if (choice == "3")
+            {
+                GuessGame();
+            }
+            else if (choice == "4")
+            {
+                ListAssignment();
+            }
+            else if (choice == "5")
+            {
+                FunctionsAssignment();
+            }
+            else if (choice == "6")
+            {
+                Console.WriteLine("Goodbye!");
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice, try again.");
+            }
         }
     }
 
-    // ===== 1. YOUR NAME =====
     static void NameAssignment()
     {
         Console.Write("What is your first name? ");
@@ -42,7 +63,6 @@ class Program
         Console.WriteLine($"Your name is {lastName}, {firstName} {lastName}.");
     }
 
-    // ===== 2. LETTER GRADE =====
     static void GradeAssignment()
     {
         Console.Write("What is your grade percentage? ");
@@ -51,27 +71,62 @@ class Program
         string letter = "";
         string sign = "";
 
-        if (grade >= 90) letter = "A";
-        else if (grade >= 80) letter = "B";
-        else if (grade >= 70) letter = "C";
-        else if (grade >= 60) letter = "D";
-        else letter = "F";
+        if (grade >= 90)
+        {
+            letter = "A";
+        }
+        else if (grade >= 80)
+        {
+            letter = "B";
+        }
+        else if (grade >= 70)
+        {
+            letter = "C";
+        }
+        else if (grade >= 60)
+        {
+            letter = "D";
+        }
+        else
+        {
+            letter = "F";
+        }
 
-        int lastDigit = grade % 10;
-        if (lastDigit >= 7) sign = "+";
-        else if (lastDigit < 3) sign = "-";
-        else sign = "";
+        if (letter != "F")
+        {
+            int lastDigit = grade % 10;
 
-        if (letter == "A" && sign == "+") sign = "";
-        if (letter == "F") sign = "";
+            if (lastDigit >= 7)
+            {
+                sign = "+";
+            }
+            else if (lastDigit < 3)
+            {
+                sign = "-";
+            }
+            else
+            {
+                sign = "";
+            }
+
+            if (letter == "A" && sign == "+")
+            {
+                sign = "";
+            }
+        }
 
         Console.WriteLine($"Your letter grade is {letter}{sign}.");
 
-        if (grade >= 70) Console.WriteLine("Congratulations! You passed the course!");
-        else Console.WriteLine("Don't give up! You'll do better next time. Keep trying!");
+        if (grade >= 70)
+        {
+            Console.WriteLine("Congratulations! You passed the course!");
+        }
+        else
+        {
+            Console.WriteLine("Don't give up! You'll do better next time. Keep trying!");
+        }
     }
 
-    // ===== 3. GUESS MY NUMBER =====
     static void GuessGame()
     {
         string playAgain = "yes";
@@ -88,9 +143,18 @@ class Program
                 guess = int.Parse(Console.ReadLine());
                 guessCount++;
 
-                if (guess < magicNumber) Console.WriteLine("Higher");
-                else if (guess > magicNumber) Console.WriteLine("Lower");
-                else Console.WriteLine("You guessed it!");
+                if (guess < magicNumber)
+                {
+                    Console.WriteLine("Higher");
+                }
+                else if (guess > magicNumber)
+                {
+                    Console.WriteLine("Lower");
+                }
+                else
+                {
+                    Console.WriteLine("You guessed it!");
+                }
             }
 
             Console.WriteLine($"It took you {guessCount} guesses.");
@@ -99,8 +163,43 @@ class Program
         }
     }
 
-    // ===== 4. LIST OF NUMBERS =====
     static void ListAssignment()
     {
         List<int> numbers = new List<int>();
-        Console.WriteLine
+        Console.WriteLine("Enter a list of numbers, type 0 when finished.");
+
+        int number;
+        do
+        {
+            Console.Write("Enter number: ");
+            number = int.Parse(Console.ReadLine());
+
+            if (number != 0)
+            {
+                numbers.Add(number);
+            }
+        } while (number != 0);
+
+        int sum = numbers.Sum();
+        double average = numbers.Count > 0 ? numbers.Average() : 0;
+        int largest = numbers.Count > 0 ? numbers.Max() : 0;
+        int smallest = numbers.Count > 0 ? numbers.Min() : 0;
+
+        Console.WriteLine($"Sum: {sum}");
+        Console.WriteLine($"Average: {average}");
+        Console.WriteLine($"Largest: {largest}");
+        Console.WriteLine($"Smallest: {smallest}");
+    }
+
+    static void FunctionsAssignment()
+    {
+        Console.Write("Enter a number to square: ");
+        int number = int.Parse(Console.ReadLine());
+        Console.WriteLine($"The square of {number} is {SquareNumber(number)}.");
+    }
+
+    static int SquareNumber(int value)
+    {
+        return value * value;
+    }
+}
